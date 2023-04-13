@@ -37,22 +37,22 @@ class RecommendationEngine():
 	target_cols = target_cols[2:]
 
 	def __init__(self) -> None:
-		if not os.path.isfile("model.bin"):
-			start_time = datetime.datetime.now()
-			data_path = os.path.abspath("data")
-			train_file =  open(os.path.join(data_path,"train_ver2.csv"))
-			x_vars_list, y_vars_list, self.cust_dict = self.processData(train_file, {})
-			train_X = np.array(x_vars_list)
-			train_y = np.array(y_vars_list)
-			print(np.unique(train_y))
-			del x_vars_list, y_vars_list
-			train_file.close()
-			print(train_X.shape, train_y.shape)
-			print(datetime.datetime.now()-start_time)
-			print("Building model..")
-			self.model = self.runXGB(train_X, train_y, seed_val=0)
-			del train_X, train_y
-			print("Done Building")
+		# if not os.path.isfile("model.bin"):
+		start_time = datetime.datetime.now()
+		data_path = os.path.abspath("data")
+		train_file =  open(os.path.join(data_path,"train_ver2.csv"))
+		x_vars_list, y_vars_list, self.cust_dict = self.processData(train_file, {})
+		train_X = np.array(x_vars_list)
+		train_y = np.array(y_vars_list)
+		print(np.unique(train_y))
+		del x_vars_list, y_vars_list
+		train_file.close()
+		print(train_X.shape, train_y.shape)
+		print(datetime.datetime.now()-start_time)
+		print("Building model..")
+		self.model = self.runXGB(train_X, train_y, seed_val=0)
+		del train_X, train_y
+		print("Done Building")
 
 
 	def getTarget(self,row):
