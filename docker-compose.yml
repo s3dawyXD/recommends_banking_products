@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: flask run,--host=0.0.0.0
+    command: flask run --host=0.0.0.0
     image: recommendation-image
     ports:
       - "5000:5000"
